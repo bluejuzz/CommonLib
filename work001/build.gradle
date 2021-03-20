@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+//    id 'com.blankj.bus'
+}
+apply from: '../work001/flavors.gradle'
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+
+    //设置签名
+    signingConfigs {
+        release {
+            storeFile file('../keystore/common_keystore.jks')
+            storePassword '123456'
+            keyAlias = 'alias_common'
+            keyPassword '123456'
+        }
+    }
+    defaultConfig {
+        applicationId "com.dlhblue.work001"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.release
+        multiDexEnabled = true
+    }
+
+
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(path: ':commonlibrary')
+}

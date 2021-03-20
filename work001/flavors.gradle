@@ -1,0 +1,43 @@
+android {
+    flavorDimensions "server"
+    productFlavors {
+        _dev {
+            //baseUrl地址
+            buildConfigField "String", "BASE_URL", '"https://baidu.com/dev/"'
+            buildConfigField "String", "BUGLY_APP_ID", '"123456"'
+            buildConfigField "boolean", "DEV", 'true'
+            buildConfigField "boolean", "TEST", 'false'
+            buildConfigField "boolean", "RELEASE", 'false'
+            //manifest文件占位符
+            manifestPlaceholders = [
+                    WORK01_APP_NAME: "Work1开发版",
+            ]
+        }
+        _test {
+            //baseUrl地址
+            buildConfigField "String", "BASE_URL", '"https://baidu.com/test/"'
+            buildConfigField "String", "BUGLY_APP_ID", '"123456"'
+            buildConfigField "boolean", "DEV", 'true'
+            buildConfigField "boolean", "TEST", 'false'
+            buildConfigField "boolean", "RELEASE", 'false'
+            //manifest文件占位符
+            manifestPlaceholders = [
+                    WORK01_APP_NAME: "Work1测试版",
+            ]
+        }
+        online {
+            //baseUrl地址
+            buildConfigField "String", "BASE_URL", '"https://baidu.com/release/"'
+            buildConfigField "String", "BUGLY_APP_ID", '"123456"'
+            buildConfigField "boolean", "DEV", 'false'
+            buildConfigField "boolean", "TEST", 'false'
+            buildConfigField "boolean", "RELEASE", 'true'
+            //manifest文件占位符
+            manifestPlaceholders = [
+                    WORK01_APP_NAME: "Work1线上版",
+            ]
+        }
+
+
+    }
+}
