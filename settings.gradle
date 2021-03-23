@@ -1,4 +1,4 @@
 include ':work001'
 include ':app'
 include ':commonlibrary'
-rootProject.name = "lib"
+rootProject.name = "android-base-lib"

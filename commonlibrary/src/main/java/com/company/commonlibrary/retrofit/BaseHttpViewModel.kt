@@ -4,6 +4,7 @@ package com.company.commonlibrary.retrofit
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.FileIOUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
@@ -14,6 +15,7 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -42,7 +44,7 @@ class BaseHttpViewModel(app: Application) : BaseViewModel(app) {
      * @param paramsBody       参数,可使用[.getRequestBody]获取
      * @param file             文件
      */
-    fun postFile(url: String, paramsBody: RequestBody, file: File): LiveData<ApiResponse<Any>> {
+    suspend fun postFile(url: String, paramsBody: RequestBody, file: File): LiveData<ApiResponse<Any>> {
 
         return when {
             !NetworkUtils.isConnected() -> {
@@ -66,7 +68,7 @@ class BaseHttpViewModel(app: Application) : BaseViewModel(app) {
      * @param url              请求地址
      * @param requestBody      请求体,可使用[.getRequestBody]获取
      */
-    fun post(url: String, requestBody: RequestBody): LiveData<ApiResponse<Any>> {
+    suspend fun post(url: String, requestBody: RequestBody): LiveData<ApiResponse<Any>> {
         //判断是否有网络连接，无网络连接直接返回失败
         return when {
             !NetworkUtils.isConnected() -> {
@@ -78,6 +80,7 @@ class BaseHttpViewModel(app: Application) : BaseViewModel(app) {
                         .post(url, requestBody)
             }
         }
+
     }
 
     /**
@@ -86,7 +89,7 @@ class BaseHttpViewModel(app: Application) : BaseViewModel(app) {
      * @param url         请求地址
      * @param params      请求参数
      */
-    fun get(url: String, params: Map<String, Any> = hashMapOf()): LiveData<ApiResponse<Any>> {
+    suspend fun get(url: String, params: Map<String, Any> = hashMapOf()): LiveData<ApiResponse<Any>> {
         return when {
             !NetworkUtils.isConnected() -> {
                 MutableLiveData(ApiErrorResponse(-1, ConnectException()))
@@ -107,7 +110,7 @@ class BaseHttpViewModel(app: Application) : BaseViewModel(app) {
      * @param saveFilepath     保存文件地址
      * @param downloadListener 下载回调
      */
-    fun download(downloadUrl: String, saveFilepath: String, downloadListener: DownloadListener?) {
+    suspend fun download(downloadUrl: String, saveFilepath: String, downloadListener: DownloadListener?) {
         when {
             !NetworkUtils.isConnected() -> downloadListener?.onFail("网络连接失败，请检查您的网络！")
             else -> {
