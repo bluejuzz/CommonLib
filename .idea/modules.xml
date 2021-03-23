@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/lib.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/lib.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/commonlibrary/lib.commonlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/commonlibrary/lib.commonlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/work001/lib.work001.iml" filepath="$PROJECT_DIR$/.idea/modules/work001/lib.work001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-base-lib.iml" filepath="$PROJECT_DIR$/.idea/modules/android-base-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-base-lib.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-base-lib.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/commonlibrary/android-base-lib.commonlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/commonlibrary/android-base-lib.commonlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/work001/android-base-lib.work001.iml" filepath="$PROJECT_DIR$/.idea/modules/work001/android-base-lib.work001.iml" />
     </modules>
   </component>
 </project>

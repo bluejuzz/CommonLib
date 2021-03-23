@@ -31,7 +31,7 @@ interface RetrofitAppService {
      * @return Observable
      */
     @POST
-    fun post(@Url url: String, @Body body: RequestBody): LiveData<ApiResponse<Any>>
+    suspend fun post(@Url url: String, @Body body: RequestBody): LiveData<ApiResponse<Any>>
 
     /**
      * 提交json数据
@@ -41,7 +41,7 @@ interface RetrofitAppService {
      * @return Observable
      */
     @GET
-    fun get(@Url url: String, @QueryMap queryMap: @JvmSuppressWildcards Map<String, Any>): LiveData<ApiResponse<Any>>
+   suspend fun get(@Url url: String, @QueryMap queryMap: @JvmSuppressWildcards Map<String, Any>): LiveData<ApiResponse<Any>>
 
 
     /**
@@ -54,7 +54,7 @@ interface RetrofitAppService {
      */
     @Multipart
     @POST
-    fun postFile(@Url url: String, @Part("parameter") description: RequestBody, @Part filePart: MultipartBody.Part): LiveData<ApiResponse<Any>>
+    suspend fun postFile(@Url url: String, @Part("parameter") description: RequestBody, @Part filePart: MultipartBody.Part): LiveData<ApiResponse<Any>>
 
     /**
      * 下载文件
@@ -64,6 +64,6 @@ interface RetrofitAppService {
      */
     @Streaming
     @GET
-    fun downloadFile(@Url downloadUrl: String): Observable<ResponseBody>
+    suspend fun downloadFile(@Url downloadUrl: String): Observable<ResponseBody>
 
 }
