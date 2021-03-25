@@ -18,6 +18,7 @@ package com.company.commonlibrary.retrofit
 
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback
@@ -30,12 +31,12 @@ import java.util.concurrent.atomic.AtomicBoolean
  * @param <R>
 </R> */
 class LiveDataCallAdapter<R>(private val responseType: Type) :
-        CallAdapter<R, LiveData<ApiResponse<R>>> {
+        CallAdapter<R, MutableLiveData<ApiResponse<R>>> {
 
     override fun responseType() = responseType
 
-    override fun adapt(call: Call<R>): LiveData<ApiResponse<R>> {
-        return object : LiveData<ApiResponse<R>>() {
+    override fun adapt(call: Call<R>): MutableLiveData<ApiResponse<R>> {
+        return object : MutableLiveData<ApiResponse<R>>() {
             private var started = AtomicBoolean(false)
             override fun onActive() {
                 super.onActive()

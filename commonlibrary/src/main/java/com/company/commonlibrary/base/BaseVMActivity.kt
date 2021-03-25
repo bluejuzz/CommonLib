@@ -20,7 +20,8 @@ abstract class BaseVMActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
     @MainThread
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(getVMClass()!!)
+        mViewModel = ViewModelProvider.AndroidViewModelFactory(application).create(getVMClass()!!)
+        initView()
         initData()
     }
 

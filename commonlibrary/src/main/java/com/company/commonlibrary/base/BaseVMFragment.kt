@@ -17,7 +17,8 @@ abstract class BaseVMFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(getVMClass()!!)
+        mViewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(getVMClass()!!)
+        initView()
         initData()
     }
 
