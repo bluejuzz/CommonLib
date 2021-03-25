@@ -2,6 +2,7 @@ package com.company.commonlibrary.retrofit
 
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -31,7 +32,7 @@ interface RetrofitAppService {
      * @return Observable
      */
     @POST
-    suspend fun post(@Url url: String, @Body body: RequestBody): LiveData<ApiResponse<Any>>
+    fun post(@Url url: String, @Body body: RequestBody): MutableLiveData<ApiResponse<Any>>
 
     /**
      * 提交json数据
@@ -41,7 +42,7 @@ interface RetrofitAppService {
      * @return Observable
      */
     @GET
-   suspend fun get(@Url url: String, @QueryMap queryMap: @JvmSuppressWildcards Map<String, Any>): LiveData<ApiResponse<Any>>
+    fun get(@Url url: String, @QueryMap queryMap: @JvmSuppressWildcards Map<String, Any>): MutableLiveData<ApiResponse<Any>>
 
 
     /**
@@ -54,7 +55,7 @@ interface RetrofitAppService {
      */
     @Multipart
     @POST
-    suspend fun postFile(@Url url: String, @Part("parameter") description: RequestBody, @Part filePart: MultipartBody.Part): LiveData<ApiResponse<Any>>
+    fun postFile(@Url url: String, @Part("parameter") description: RequestBody, @Part filePart: MultipartBody.Part): MutableLiveData<ApiResponse<Any>>
 
     /**
      * 下载文件
@@ -64,6 +65,6 @@ interface RetrofitAppService {
      */
     @Streaming
     @GET
-    suspend fun downloadFile(@Url downloadUrl: String): Observable<ResponseBody>
+    fun downloadFile(@Url downloadUrl: String): Observable<ResponseBody>
 
 }

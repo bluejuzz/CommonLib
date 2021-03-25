@@ -41,7 +41,6 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), IActivity {
 
         mViewBinding = getVB(layoutInflater)!!
         setContentView(mViewBinding.root)
-        initView()
     }
 
     /**

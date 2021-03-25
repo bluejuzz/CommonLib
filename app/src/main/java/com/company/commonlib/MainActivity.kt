@@ -5,8 +5,8 @@ import com.company.commonlib.contacts.ContactsTestActivity
 import com.company.commonlib.databinding.ActivityMainBinding
 import com.company.commonlib.network.NetworkActivity
 import com.company.commonlibrary.base.BaseVMActivity
+import com.company.commonlibrary.base.BaseViewModel
 
-import com.company.commonlibrary.retrofit.BaseHttpViewModel
 import com.company.commonlibrary.util.NetworkChangeUtils
 
 /**
@@ -16,7 +16,7 @@ import com.company.commonlibrary.util.NetworkChangeUtils
  * @des
  */
 @Route(path = "main/home")
-class MainActivity : BaseVMActivity<BaseHttpViewModel, ActivityMainBinding>(), NetworkChangeUtils.NetworkChangeListener {
+class MainActivity : BaseVMActivity<BaseViewModel, ActivityMainBinding>(), NetworkChangeUtils.NetworkChangeListener {
 
     override fun initView() {
         mViewBinding.testHttp.setOnClickListener {

@@ -18,6 +18,7 @@ package com.company.commonlibrary.retrofit
 
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import retrofit2.CallAdapter
 import retrofit2.CallAdapter.Factory
 import retrofit2.Retrofit
@@ -30,7 +31,7 @@ class LiveDataCallAdapterFactory : Factory() {
             annotations: Array<Annotation>,
             retrofit: Retrofit
     ): CallAdapter<*, *>? {
-        if (getRawType(returnType) != LiveData::class.java) {
+        if (getRawType(returnType) != MutableLiveData::class.java) {
             return null
         }
         val observableType = getParameterUpperBound(0, returnType as ParameterizedType)
